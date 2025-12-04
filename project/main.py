@@ -5,6 +5,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash,check_password_hash
 
+import pymysql
+pymysql.install_as_MySQLdb()
+
+
 from flask_login import login_required,logout_user,login_user,login_manager,LoginManager,current_user
 
 # from flask_mail import Mail
