@@ -42,7 +42,7 @@ login_manager=LoginManager(app)
 login_manager.login_view='login'
 
 # app.config['SQLALCHEMY_DATABASE_URI']='mysql://username:password@localhost/databsename'
-app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:@localhost/covid'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:@localhost/coviddbms'
 db=SQLAlchemy(app)
 
 
