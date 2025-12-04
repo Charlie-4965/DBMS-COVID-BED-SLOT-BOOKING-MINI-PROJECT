@@ -365,43 +365,37 @@ def slotbooking():
             flash("Hospital Code not exist","warning")
             return render_template("booking.html",query=query,query1=query1)
 
-        code=hcode
-        # dbb=db.engine.execute(f"SELECT * FROM `hospitaldata` WHERE `hospitaldata`.`hcode`='{code}' ")  
-        dbb=Hospitaldata.query.filter_by(hcode=hcode).first()      
-        bedtype=bedtype
-        if bedtype=="NormalBed":       
-            for d in dbb:
-                seat=d.normalbed
-                print(seat)
-                ar=Hospitaldata.query.filter_by(hcode=code).first()
-                ar.normalbed=seat-1
-                db.session.commit()
-                
-            
-        elif bedtype=="HICUBed":      
-            for d in dbb:
-                seat=d.hicubed
-                print(seat)
-                ar=Hospitaldata.query.filter_by(hcode=code).first()
-                ar.hicubed=seat-1
-                db.session.commit()
+        code = hcode
+        dbb = Hospitaldata.query.filter_by(hcode=hcode).first()
+        bedtype = bedtype
 
-        elif bedtype=="ICUBed":     
-            for d in dbb:
-                seat=d.icubed
-                print(seat)
-                ar=Hospitaldata.query.filter_by(hcode=code).first()
-                ar.icubed=seat-1
-                db.session.commit()
+        if bedtype == "NormalBed":
+            seat = dbb.normalbed
+            ar = Hospitaldata.query.filter_by(hcode=code).first()
+            ar.normalbed = seat - 1
+            db.session.commit()
 
-        elif bedtype=="VENTILATORBed": 
-            for d in dbb:
-                seat=d.vbed
-                ar=Hospitaldata.query.filter_by(hcode=code).first()
-                ar.vbed=seat-1
-                db.session.commit()
+        elif bedtype == "HICUBed":
+            seat = dbb.hicubed
+            ar = Hospitaldata.query.filter_by(hcode=code).first()
+            ar.hicubed = seat - 1
+            db.session.commit()
+
+        elif bedtype == "ICUBed":
+            seat = dbb.icubed
+            ar = Hospitaldata.query.filter_by(hcode=code).first()
+            ar.icubed = seat - 1
+            db.session.commit()
+
+        elif bedtype == "VENTILATORBed":
+            seat = dbb.vbed
+            ar = Hospitaldata.query.filter_by(hcode=code).first()
+            ar.vbed = seat - 1
+            db.session.commit()
         else:
+            seat = 0
             pass
+
 
         check=Hospitaldata.query.filter_by(hcode=hcode).first()
         if check!=None:
