@@ -142,7 +142,7 @@ def login():
         srfid=request.form.get('srf')
         dob=request.form.get('dob')
         user=User.query.filter_by(srfid=srfid).first()
-        if user and user.dob=dob:
+        if user and user.dob==dob:
             login_user(user)
             flash("Login Success","info")
             return render_template("index.html")
